@@ -52,9 +52,7 @@ if($con['C']<>1){
 										<th></th>
 										<th>#</th>
 										<th>Material</th>
-										<th>Estoque Atual</th>
-										<th>Estoque M&iacute;nimo</th>
-										<th>Qtd Compra M&iacute;n</th>
+										<th>Qtd Compra</th>
 									</tr>
 								</thead>
 								<tbody>

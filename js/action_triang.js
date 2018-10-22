@@ -1568,6 +1568,7 @@ $(document).on("ready", function(){
 	                       .get()
 	                       .join(",");
 	        if(checkeditems==""){
+	        	console.log(checkeditems);
 	        	alert("Escolha o produto que deseja listar!");
 	        	
 	        }

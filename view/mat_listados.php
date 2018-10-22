@@ -1,7 +1,7 @@
 <?php
-	session_start();
-	require_once("../../model/recordset.php");
-	require_once("../../sistema/class/class.functions.php");
+	session_start("portal");
+	require_once("../model/recordset.php");
+	require_once("../class/class.functions.php");
 
 	$fn = new functions();
 	$rs = new recordset();
@@ -89,6 +89,6 @@
 	 },10500);
 
 </script>
-<script src="<?=$hosted;?>/triangulo/js/action_triang.js"></script>
-<script src="<?=$hosted;?>/triangulo/js/functions.js"></script>
+<script src="<?=$hosted;?>/sistema/js/action_triang.js"></script>
+<script src="<?=$hosted;?>/sistema/js/functions.js"></script>
 	

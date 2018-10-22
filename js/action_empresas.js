@@ -1564,15 +1564,13 @@ $(document.body).on("click",".exc_benef",function(){
                 mat_categoria: {required: true, min:0},
                 mat_cadastro : {required: true, min:0},
                 mat_qtd      : {required: true, min:0},
-                mat_opera    : {required: true},
-                mat_obs      : {required: true}
+                mat_opera    : {required: true}
             },
             messages: {
                 mat_categoria: {required: "Escolha a categoria", min:"Informe a Categoria!"},
                 mat_cadastro : {required: "Informe o Produto", min:"Informe o Produto!"},
                 mat_qtd      : {required: "Digite a Quantidade", min:"Valor Incorreto!"},
-                mat_opera    : {required: "Informe a natureza da opera&ccedil;&atilde;o"},
-                mat_obs      : {required: "Descreva seu pedido"}
+                mat_opera    : {required: "Informe a natureza da opera&ccedil;&atilde;o"}
             },
             highlight: function(element) {
                 $(element).closest('.form-group').addClass('has-error');

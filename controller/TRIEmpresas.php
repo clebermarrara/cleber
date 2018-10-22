@@ -2758,32 +2758,23 @@ if($acao == "gerar_lista"){
 	$rs_eve->Insere($dados2,"mat_listas");
 // Segunda Parte: Consultar os registros marcados na lista
 		
-	$sql = "SELECT * FROM alerta_compras a
-				JOIN mat_cadastro b ON a.alerta_matId = b.mcad_id 
-			WHERE alerta_matid IN(".$servs.")";
-	$rs_eve->FreeSql($sql);
-// Terceira parte: Incluir os registros achados na solicitação de compras
 	$erro = 0;
 	$prod = 0;
-	while($rs_eve->GeraDados()){
-		$cod2 = $rs1->autocod("mat_id","mat_historico");
-		$dados['mat_id']		= $cod2;
-		$dados['mat_empcod'] 	= $_SESSION['usu_empcod'];
-		$dados['mat_catId'] 	= $rs_eve->fld("mcad_catid");
-		$dados['mat_cadId'] 	= $rs_eve->fld("mcad_id");
-		$dados['mat_operacao'] 	= "I";
-		$dados['mat_data'] 		= date("Y-m-d H:i:s");
-		$dados['mat_qtd'] 		= $rs_eve->fld("alerta_matqtdcp");
-		$dados['mat_status'] 	= 0;
+	$cod2 = explode(",", $servs);
+
+	foreach ($cod2 as $key => $value) {
+		$rs1 = new recordset();
+		$dados['mat_status']	= 91; //Listado para compra
 		$dados['mat_obs'] 		= "Lista de Compras n. ".$cod;
 		$dados['mat_usuSol'] 	= $_SESSION['usu_cod'];
 		$dados['mat_lista'] 	= $cod;
-		if(!$rs1->Insere($dados,"mat_historico")){
+		if(!$rs1->Altera($dados,"mat_historico","mat_id = ".$value)){
 			$prod+=1;
 		}
 		else{
 			$erro+=1;
 		}
+		unset($rs1);
 	}
 
 	if($erro==0){
@@ -2826,7 +2817,8 @@ if($acao == "exclui_Lista"){
 		// retirar os itens da lista cancelada
 		$dados2 = array();
 		$rs2 = new recordset();
-		$rs2->Exclui("mat_historico", "mat_lista=".$mlist_id);
+		$dados2['mat_status'] = 0;
+		$rs2->Altera($dados2, "mat_historico", "mat_lista=".$mlist_id);
 		$resul['status'] = "OK";
 		$resul['mensagem']="Dados Cancelados!";
 		$resul['sql']="SQL CANCELAMENTO-> ".$rs_eve->sql." SQL ANULAÇÃO -> ".$rs2->sql;
