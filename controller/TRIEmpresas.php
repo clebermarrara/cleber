@@ -630,7 +630,7 @@ if($acao == "pagar_recibo"){
 /* COMOBOX DINAMICO - Base no controle.js*/
 
 if($acao == "combo_dep"){
-	$opts = "<option SELECTED value=''>TODOS</option>";
+	$opts = "<option value=''>TODOS</option>";
 	$rs_eve->Seleciona("*","usuarios","usu_dep = ".$id_dep." AND usu_ativo='1'");
 	while($rs_eve->GeraDados()){
 		$opts.= "<option value='".$rs_eve->fld("usu_cod")."'>".$rs_eve->fld("usu_nome")."</option>";

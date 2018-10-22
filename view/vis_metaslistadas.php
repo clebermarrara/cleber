@@ -93,16 +93,17 @@
 				}
 				//echo $sql1."<br>";		 
 				$num = 0;
+				$c = 0;
 				$rs2->FreeSql($sql1);
 				if($rs2->linhas > 0){
 					$rs2->GeraDados();
 					$num = $rs2->fld("env_gerado")+$rs2->fld("env_conferido")+$rs2->fld("env_enviado");
+					$c = strtotime($rs2->fld("env_conferidodata"));
 				}
 				$res = ($num / 3)*100;
 				$cor = $fn2->getColor($res);
 
 				$p = strtotime($rs->fld("metas_datafin")." 23:59:59");
-				$c = strtotime($rs2->fld("env_conferidodata"));
 
 				if($c > $p ){
 					$color="danger";
