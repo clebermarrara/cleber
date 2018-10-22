@@ -3,7 +3,7 @@
 error_reporting(E_ALL & E_NOTICE & E_WARNING);
 
 /*inclusão dos principais itens da página */
-session_start();
+session_start("portal");
 $sec = "Mater";
 $pag = "lista_materiais.php";
 require_once("../config/main.php");
@@ -11,7 +11,7 @@ require_once("../config/valida.php");
 require_once("../config/mnutop.php");
 require_once("../config/menu.php");
 require_once("../config/modals.php");
-require_once("../../sistema/class/class.functions.php");
+require_once("../class/class.functions.php");
 require_once("../class/class.permissoes.php");
 
 $per = new permissoes();
@@ -131,17 +131,17 @@ if($con['C']<>1){
     <script src="<?=$hosted;?>/sistema/assets/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
     <script src="<?=$hosted;?>/sistema/assets/plugins/input-mask/jquery.inputmask.extensions.js"></script>
     
-    <script src="<?=$hosted;?>/triangulo/js/action_irrf.js"></script>
-    <script src="<?=$hosted;?>/triangulo/js/action_triang.js"></script>
+    <script src="<?=$hosted;?>/sistema/js/action_irrf.js"></script>
+    <script src="<?=$hosted;?>/sistema/js/action_triang.js"></script>
 	<!-- Validation -->
     <!--<script src="<?=$hosted;?>/js/jquery-validation/dist/jquery.validate.min.js"></script>-->
 	<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
 	<!--datatables-->
     <script src="<?=$hosted;?>/sistema/assets/plugins/datatables/jquery.dataTables.min.js"></script>
     <script src="<?=$hosted;?>/sistema/assets/plugins/datatables/dataTables.bootstrap.min.js"></script>
-    <script src="<?=$hosted;?>/triangulo/js/jquery.cookie.js"></script>
-        <script src="<?=$hosted;?>/triangulo/js/controle.js"></script>
-        <script src="<?=$hosted;?>/triangulo/js/functions.js"></script>
+    <script src="<?=$hosted;?>/sistema/js/jquery.cookie.js"></script>
+        <script src="<?=$hosted;?>/sistema/js/controle.js"></script>
+        <script src="<?=$hosted;?>/sistema/js/functions.js"></script>
 
 	<script type="text/javascript">
 		$(function () {
