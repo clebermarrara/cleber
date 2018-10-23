@@ -2185,10 +2185,13 @@ if($acao == "imp_pesq"){
 						 </tr>";
 			}
 		//}
+		$tbl.="<tr>
+					<th colspan=9>{$rs_eve->linhas} Empresas</th>
+				</tr>";
 	}
 	else{
 		$tbl.="<tr>
-					<td colspan=8>Sem Impostos para a empresa {$emp}!</td>
+					<td colspan=9>Sem Impostos para a empresa {$emp}!</td>
 				</tr>";
 	}
 echo $tbl;
