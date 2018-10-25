@@ -666,6 +666,7 @@ if($acao == "popula_func"){
 }
 
 if($acao == "get_empregados"){
+	$sl = ($selected == 1?"SELECTED":"");
 	$whr = "usu_dep = ".$dep." AND usu_ativo='1'";
 	$con = $per->getPermissao("todos_func",$_SESSION['usu_cod']);
 	if($con["C"]==0){
@@ -675,7 +676,7 @@ if($acao == "get_empregados"){
 	echo "<option value=''>Selecione:</option>";
 	while($rs_eve->GeraDados()){
 		
-		echo "<option value='".$rs_eve->fld("usu_cod")."'>".$rs_eve->fld("usu_nome")."</option>";
+		echo "<option ".$sl." value='".$rs_eve->fld("usu_cod")."'>".$rs_eve->fld("usu_nome")."</option>";
 	}
 }
 

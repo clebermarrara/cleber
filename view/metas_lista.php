@@ -61,21 +61,30 @@ $con = $per->getPermissao("todos_depart",$_SESSION['usu_cod']);
 										<input type="text" class="form-control dtp" name="meta_fim" id="meta_fim" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask/>
 									</div>
 									
+									<div class="form-group col-md-2">
+										<label for="meta_depart">Departamento:</label>
+										<select class="form-control select2" name="meta_dep" value="" id="meta_dep"/>
+											<option value=''>Todos</option>
+											<?php
+												$permiss = $per->getPermissao("todos_depart",$_SESSION['usu_cod']);
+												$whr = "dep_id>0";
+												if($permiss['C']==0){
+													$whr.=" AND dep_id = ".$_SESSION['dep'];
+												}
+												$rs2->Seleciona("*","departamentos",$whr,"","dep_id ASC");
+												while($rs2->GeraDados()){ ?>
+													<option value="<?=$rs2->fld("dep_id");?>"><?=$rs2->fld("dep_nome");?></option>
+											<?php
+												}
+											?>
+										</select>
+									</div>
 																	
-									<div class="form-group col-md-4">
+									<div class="form-group col-md-5">
 										<label for="emp_cnpj">Usu&aacute;rio:</label>
 										<select class="select2" name="meta_user" id="meta_user" multiple style="width:100%;">
 											<option value="">Selecione:</option>
-											<?php
-											$whr="usu_ativo = '1' AND usu_empcod=".$_SESSION['sys_id'];
-											if($con['C'] == 0){$whr.=" AND usu_dep=".$_SESSION['dep'];}
-											$rs->Seleciona("*","usuarios",$whr,'','usu_nome ASC');
-											while($rs->GeraDados()):	
-											?>
-												<option <?=($_SESSION['usu_cod']==$rs->fld("usu_cod")?"SELECTED":"");?> value="<?=$rs->fld("usu_cod");?>"><?=$rs->fld("usu_nome");?></option>
-											<?php
-											endwhile;
-											?>
+											
 										</select>									
 									</div>
 									
@@ -135,7 +144,7 @@ $con = $per->getPermissao("todos_depart",$_SESSION['usu_cod']);
 <!-- SELECT2 TO FORMS
 -->
 
-<script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 <!-- Validation -->
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
 <script>
@@ -143,10 +152,26 @@ $con = $per->getPermissao("todos_depart",$_SESSION['usu_cod']);
 	$(document).ready(function () {
 		$(".dtp").inputmask("dd/mm/yyyy", {"placeholder": "dd/mm/aaaa"});			
 		
-		$(".select2").select2({
+		$("#meta_user").select2({
 			tags: true,
 			theme: "classic"
-		});
+        });
+		$("#meta_dep").select2({
+			tags: true
+        });
+        $(document.body).on("change","#meta_dep",function(){
+	        tipo: "aguarde";
+	        $.post("../controller/TRIEmpresas.php",
+	        {
+	            acao: "get_empregados", 
+	            dep: $(this).val(),
+	            selected: 1
+	        },
+	        function(data){
+	            $("#meta_user").html(data);
+	        }
+	        , "html");
+	    });
 
 		setTimeout(function(){
 			//$("#slc").load("meus_chamados.php");		
