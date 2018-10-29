@@ -58,16 +58,6 @@
 						<?php
 						endif;
 					?>
-					<!--<button 
-						id="bt_maildarf"
-						class='btn btn-xs btn-success'
-						data-toggle='tooltip' 
-						data-placement='bottom'
-						data-cota="<?=$rs->fld("icot_id"); ?>"
-						title='Enviar por E-mail'>
-						<i class='fa fa-envelope'></i> 
-					</button>-->
-					
 					
 					
 				</td>

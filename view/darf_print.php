@@ -11,7 +11,7 @@ require_once("../config/valida.php");
 require_once("../config/mnutop.php");
 require_once("../config/menu.php");
 require_once("../config/modals.php");
-require_once("../../sistema/class/class.functions.php");
+require_once("../class/class.functions.php");
 
 $rs_rel = new recordset();
 ?>
@@ -37,45 +37,7 @@ $rs_rel = new recordset();
 				if(isset($_SESSION['classe'])){$classe = $_SESSION['classe'];}
 				else{$classe=0;}
 			?>
-			<!--<div class="row">
-				<div class="col-md-12">
-				<!-- general form elements >
-					<div class="box box-primary">
-						<div class="box-header with-border">
-							<h3 class="box-title">Solicitar Contato</h3>
-						</div><!-- /.box-header
-						<!-- form start >
-						<form role="form" id="cad_sol">
-							
-							<div class="box-body">
-							<!-- radio Clientes 
-								<div id="clientes" class="row">
-									<div class="form-group col-xs-3">
-										<label for="emp_cnpj">Cota</label><br>
-										<select class="select2" name="rel_ref" id="rel_ref" style="width:100%">
-											<option value=1>Cota 1</option>
-											<option value=2>Cota 2</option>
-											<option value=3>Cota 3</option>
-											<option value=4>Cota 4</option>
-											<option value=5>Cota 5</option>
-											<option value=6>Cota 6</option>
-											<option value=7>Cota 7</option>
-											<option value=8>Cota 8</option>
-						
-										</select>
-									</div>
-								</div>
-							</div>
-							
-							<div class="box-footer">
-								<a class="btn btn-sm btn-success"
-								href="#"
-								id="bt_darf"
-								><i class="fa fa-sort-alpha-desc"></i> Filtrar</a>
-								
-							</div>
-						</form>
-					</div><!-- ./box -->
+			
 			<div class="row">
 				<div class="col-md-12">
 				<!-- general form elements -->
@@ -120,15 +82,6 @@ $rs_rel = new recordset();
 								  </table>
 								</div><!-- /.col -->
 							</div><!-- /.row -->
-							<!--
-							 <div class="row no-print">
-								<div class="col-xs-12">
-								  <a id="bt_IR_print" href="#" target="_blank" class="btn btn-default"><i class="fa fa-print"></i> Imprimir</a>
-								  <!--<button class="btn btn-primary pull-right" style="margin-right: 5px;"><i class="fa fa-file-pdf-o"></i> Gerar PDF</button>
-								  <a id="bt_excel" href="#" class="btn btn-success pull-right" style="margin-right: 5px;"><i class="fa fa-file-excel-o"></i> Gerar Excel</a>
-								</div>
-							  </div>
-							  -->
 							
 						</div>
 							
@@ -144,7 +97,7 @@ $rs_rel = new recordset();
 		require_once("../config/footer.php");
 	?></div><!-- ./wrapper -->
 
-<script src="<?=$hosted;?>/sistema/assets/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+	<script src="<?=$hosted;?>/sistema/assets/plugins/jQuery/jQuery-2.1.4.min.js"></script>
     <!-- Bootstrap 3.3.5 -->
     <script src="<?=$hosted;?>/sistema/assets/bootstrap/js/bootstrap.min.js"></script>
     <!-- FastClick -->
@@ -168,9 +121,17 @@ $rs_rel = new recordset();
     <script src="<?=$hosted;?>/sistema/assets/plugins/datatables/dataTables.bootstrap.min.js"></script>
     <script src="<?=$hosted;?>/triangulo/js/dtables_pt.js"></script>
 	<script>
-		$(".select2").select2({
-			tags: true,
-			theme: "classic"
+		$(document).ready(function () {
+			$(".select2").select2({
+				tags: true,
+				theme: "classic"
+			});
+			$('#tb_darf').DataTable({
+				"columnDefs": [{
+				"defaultContent": "-",
+				"targets": "_all"
+				}]
+			});
 		});
 	</script>
 
