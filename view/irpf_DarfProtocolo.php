@@ -3,10 +3,10 @@
 error_reporting(E_ALL & E_NOTICE & E_WARNING);
 
 /*inclusão dos principais itens da página */
-session_start();
+session_start("portal");
 require_once("../config/main.php");
-require_once("../../model/recordset.php");
-require_once("../../sistema/class/class.functions.php");
+require_once("../model/recordset.php");
+require_once("../class/class.functions.php");
 $rs_rel = new recordset();
 
 ?>
