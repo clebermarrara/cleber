@@ -23,7 +23,7 @@ error_reporting(E_ALL & E_NOTICE & E_WARNING);
 			<th>A&ccedil;&otilde;es</th>
 		</tr>	
 <?php
-	$sql = "SELECT a.*, c.maq_id, c.maq_ip, b.usu_nome nmaq, d.usu_nome nus 
+	$sql = "SELECT a.*, c.maq_id, c.maq_ip, maq_usuario, b.usu_nome nmaq, d.usu_nome nus 
 				FROM perifericos a 
 				LEFT JOIN usuarios b ON a.per_usucad = b.usu_cod 
 				LEFT JOIN maquinas c ON a.per_maqid = c.maq_id 
@@ -33,19 +33,24 @@ error_reporting(E_ALL & E_NOTICE & E_WARNING);
 	if(isset($_GET['ip']) AND $_GET['ip']<>"" ){ $sql.= " AND maq_ip = '".$_GET['ip']."'";}
 	if(isset($_GET['tipo']) AND $_GET['tipo']<>"" ){ $sql.= " AND per_tipo ='".$_GET['tipo']."'";}
 	
-	$sql .= " ORDER BY per_ativo DESC, per_modelo, per_tipo ASC, per_datacad ASC";
+	$sql .= " ORDER BY per_ativo DESC, maq_usuario ASC,  per_datacad ASC";
 	$rs->FreeSql($sql);
 	//echo $rs->sql;
 	if($rs->linhas==0):
 	echo "<tr><td colspan=9> Nenhum periférico</td></tr>";
 	else:
-		while($rs->GeraDados()){ ?>
+		while($rs->GeraDados()){ 
+			$color="";
+			if($rs->fld("per_descart")==1){
+				$color="danger";
+			}
+			?>
 			
-			<tr>
+			<tr class="<?=$color;?>">
 				<td><?=$rs->fld("per_id");?></td>
 				<td class="hidden-xs"><?=$rs->fld("per_tipo");?></td>
 				<td class="hidden-xs"><?=$rs->fld("per_modelo");?></td>
-				<td class="hidden-xs"><?=$rs->fld("nus");?></td>
+				<td class="hidden-xs"><?=$rs->fld("maq_usuario");?></td>
 				<td><?=($rs->fld("per_ativo")==1?"Ativo":"Inativo");?></td>
 				<td><?=$fn->data_hbr($rs->fld("per_datacad"));?></td>
 				<td><?=$rs->fld("nmaq");?></td>
