@@ -1230,7 +1230,7 @@ if($acao == "incluir_cli"){
 	$dados['tipo_emp'] 			= $cli_tipo;
 	$dados['num_emp'] 			= $cli_func;
 	$dados['telefone'] 			= $cli_tel;
-	$dados['email']				= $cli_mail;
+	$dados['email']				= $cli_email;
 	$dados['site'] 				= $cli_site;
 	$dados['tribut'] 			= $cli_tribut;
 	$dados['ativo'] 			= $cli_ativo;

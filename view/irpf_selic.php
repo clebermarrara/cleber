@@ -3,7 +3,7 @@
 error_reporting(E_ALL & E_NOTICE & E_WARNING);
 
 /*inclusão dos principais itens da página */
-session_start();
+session_start("portal");
 $sec = "IRRF";
 $pag = "irpf_selic.php";
 require_once("../config/main.php");
@@ -11,7 +11,7 @@ require_once("../config/valida.php");
 require_once("../config/mnutop.php");
 require_once("../config/menu.php");
 require_once("../config/modals.php");
-require_once("../../sistema/class/class.functions.php");
+require_once("../class/class.functions.php");
 ?>
 
     <!-- Content Wrapper. Contains page content -->
@@ -84,7 +84,7 @@ require_once("../../sistema/class/class.functions.php");
 							<h3 class="box-title">Taxas Selic</h3>
 						</div><!-- /.box-header -->
 						<div class="box-body">
-							 <table class="table table-hover table-condensed">
+							 <table class="table table-striped table-condensed" id="ir_selic">
 							 	<thead>
 									<tr>
 										<th class="col-md-1">#</th>
@@ -123,18 +123,29 @@ require_once("../../sistema/class/class.functions.php");
   
    <!-- Slimscroll -->
     <script src="<?=$hosted;?>/sistema/assets/plugins/slimScroll/jquery.slimscroll.min.js"></script>
-      <script src="<?=$hosted;?>/sistema/assets/js/maskinput.js"></script>
+    <script src="<?=$hosted;?>/sistema/assets/js/maskinput.js"></script>
     <script src="<?=$hosted;?>/sistema/assets/js/jmask.js"></script>
-    <script src="<?=$hosted;?>/triangulo/js/controle.js"></script>
-    <script src="<?=$hosted;?>/triangulo/js/action_irrf.js"></script>
-    <script src="<?=$hosted;?>/triangulo/js/action_triang.js"></script>
-        <script src="<?=$hosted;?>/triangulo/js/jquery.cookie.js"></script>
-        <script src="<?=$hosted;?>/triangulo/js/functions.js"></script>
+    <script src="<?=$hosted;?>/sistema/js/controle.js"></script>
+    <script src="<?=$hosted;?>/sistema/js/action_irrf.js"></script>
+    <script src="<?=$hosted;?>/sistema/js/action_triang.js"></script>
+    <script src="<?=$hosted;?>/sistema/js/jquery.cookie.js"></script>
+    <script src="<?=$hosted;?>/sistema/js/functions.js"></script>
+
+    <script src="<?=$hosted;?>/sistema/assets/plugins/datatables/jquery.dataTables.min.js"></script>
+	<script src="<?=$hosted;?>/sistema/assets/plugins/datatables/dataTables.bootstrap.min.js"></script> 
 	<!-- Validation -->
     <!--<script src="<?=$hosted;?>/js/jquery-validation/dist/jquery.validate.min.js"></script>-->
 	<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
 	<script>
-	// Atualizar a cada 7 segundos
+		$(document).ready(function(){
+			$('#ir_selic').DataTable({
+				"columnDefs": [{
+				"defaultContent": "-",
+				"targets": "_all"
+				}]
+			});
+		});
+		// Atualizar a cada 7 segundos
 		 setTimeout(function(){
 			$("#irrf_cli tbody").load("irrf_conRet.php?token=<?=$_SESSION['token'];?>&clicod=<?=$_GET['clicod'];?>");					 
 			$("#alms").load(location.href+" #almsg");	

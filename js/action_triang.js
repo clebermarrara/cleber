@@ -59,7 +59,7 @@ $(document).on("ready", function(){
 								$("#bt_solic").html("<i class='fa fa-fax'></i> Solicitar");
 								$.notify({
 									title: 		"<b>Contato Solicitado!</b>",
-									message: 	"Ligação solicitada!"
+									message: 	"<br>Ligação solicitada!"
 									}, {
 										type: 			"success",
 										allow_dismiss: 	true

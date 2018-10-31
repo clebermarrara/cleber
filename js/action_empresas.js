@@ -274,7 +274,8 @@ $(document.body).on("click","#bt_altcli", function(){
             num:     {required: true},
             bai:     {required: true},
             cid:     {required: true},
-            uf:      {required: true}
+            uf:      {required: true},
+            cli_email:   {required: true, email: true}   
 
         },
         messages: {
@@ -289,7 +290,8 @@ $(document.body).on("click","#bt_altcli", function(){
             num:     {required: "Digite o número"},
             bai:     {required: "Digite o bairro"},
             cid:     {required: "Digite a cidade"},
-            uf:      {required: "Digite o estado"}
+            uf:      {required: "Digite o estado"},
+            cli_email:   {required: "Digite o e-mail", email: "Entre com um e-mail válido"}
 
         },
         highlight: function(element) {

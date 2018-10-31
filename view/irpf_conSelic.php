@@ -1,7 +1,7 @@
 <?php
-	session_start();
-	require_once("../../model/recordset.php");
-	require_once("../../sistema/class/class.functions.php");
+	session_start("portal");
+	require_once("../model/recordset.php");
+	require_once("../class/class.functions.php");
 
 	$fn = new functions();
 	$rs = new recordset();
@@ -26,11 +26,6 @@
 			</tr>
 		<?php  
 		}
-		?><tr>
-				<td colspan="4">
-					<strong><?=$rs->linhas; ?> Registro(s)</strong>
-				</td>
-			</tr>
-			</form>
+		?>
 	<?php endif; ?>
 	
