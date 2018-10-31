@@ -186,4 +186,33 @@ $(document).on("ready", function(){
 			);
 			
 		});
+	/*---------------|DESCARTAR PERIFERICO|------------------------*\
+	| Author: 	Cleber Marrara Prado 								|
+	| Version: 	1.1.6 												|
+	| Email: 	cleber.marrara.prado@gmail.com 						|
+	| Date: 	30/10/2018											|
+	\*-------------------------------------------------------------*/
+		$(document.body).on("click","#bt_descarte",function(){
+			$(this).html("<i class='fa fa-cog fa-spin'></i> Processando...");
+			$.post("../controller/TRIMaquinas.php",{
+				acao		: "descarta_perif",
+				per_id		: $("#perid").val(),
+				per_obs		: CKEDITOR.instances.per_obs.getData()
+				},
+				function(data){
+					if(data.status=="OK"){
+						//$("#slc").load("vis_maquinas.php").fadeIn("slow");
+						//$("#cad_maq")[0].reset();
+						location.href = "form_perif.php?token="+$("#token").val()+"&maqid="+$("#per_assoc").val();
+						console.log("form_perif.php?token="+$("#token").val()+"&maqid="+$("#per_assoc").val());
+					} 
+					else{
+						//$("#slc").load("vis_perifs.php").fadeIn("slow");
+					}
+					console.log(data.sql);//TO DO mensagem OK
+				},
+				"json"
+			);
+			//$(this).html("<i class='fa fa-cog fa-terminal'></i> Novo");
+		});
 });

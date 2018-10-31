@@ -14,6 +14,7 @@ $per = new permissoes();
 $con =$per->getPermissao($pag,$_SESSION['usu_cod']);
 $rs= new recordset();
 $rs2= new recordset();
+$fn = new functions();
 $hide= "";
 										
 ?>
@@ -49,6 +50,7 @@ $hide= "";
 										$whr = " WHERE per_id=".$_GET['perid'];
 										$sql = "SELECT * FROM perifericos a
 								        			LEFT JOIN maquinas b ON a.per_maqid = b.maq_id
+								        			LEFT JOIN usuarios c ON a.per_descpor = c.usu_cod
 								        		".$whr;
 								        $rs2->FreeSql($sql);
 								        //echo $rs2->sql;
@@ -117,6 +119,13 @@ $hide= "";
 											<input type="checkbox" <?=($rs2->fld("per_ativo")==1 ? "CHECKED" :"");?> name="per_ativo" id="per_ativo"> Item Ativo
 										</div>
 									</div>
+
+									<div class="form-group col-md-6 <?=($rs2->fld("per_descart")==1?"":"hide");?>">
+										<div class="alert alert-danger">
+											Item descartado em <?=$fn->data_hbr($rs2->fld("per_descem"));?> por <?=$rs2->fld("usu_nome");?>
+											
+										</div>
+									</div>									
 								</div>
 								
 							<div id="consulta"></div>
@@ -135,6 +144,11 @@ $hide= "";
 							<?php
 							if($con['A']==1 AND $hide<>""){ ?>
 							<button class="btn btn-sm btn-primary" type="button" id="bt_altPer"><i class="fa fa-pencil"></i> Alterar</button>
+							<?php } 
+							if(!$rs2->fld("per_descart")==1){ ?>
+								<a class="btn btn-sm btn-danger" href="form_perifdescart.php?token=<?=$_SESSION['token'];?>&perid=<?=$rs2->fld("per_id");?>"><i class="fa fa-times"></i> Descartar</a>
+							<?php } else{ ?>
+								<a class="btn btn-sm btn-danger" href="form_perifdescart.php?token=<?=$_SESSION['token'];?>&perid=<?=$rs2->fld("per_id");?>"><i class="fa fa-times"></i> Ver descarte</a>
 							<?php } ?>
 						</div>
 						</form>

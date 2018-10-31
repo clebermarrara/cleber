@@ -115,3 +115,24 @@ if($acao == "altera_perif"){
 	echo json_encode($resul);
     exit;	
 }
+
+if($acao == "descarta_perif"){
+	$dados = array();
+	$dados['per_descart']	= 1;
+	$dados['per_descpor']	= $_SESSION['usu_cod'];
+	$dados['per_descem']	= date("Y-m-d H:i:s");
+	$dados['per_obs']		= $per_obs;
+	$whr = "per_id=".$per_id;
+	if (!$rs_eve->Altera($dados,"perifericos",$whr)) {
+        $resul["status"] = "OK";
+        $resul["mensagem"] = "Periférico atualizado!";
+        $resul["sql"] = $rs_eve->sql;
+    } else {
+        $hist->add_hist(11);
+		$resul["status"] = "ERRO";
+        $resul["mensagem"] = "Falha na inclus&atilde;o";
+        $resul["sql"] = $rs_eve->sql;
+    }
+	echo json_encode($resul);
+    exit;	
+}

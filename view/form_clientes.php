@@ -132,15 +132,15 @@
 										<div class="row">
 											<div class="form-group col-xs-2">
 					                        	<label for="emp_uf">Capital Social</label>
-					                          	<input class="form-control input-sm" id="cli_capital" placeholder="Capital Social" value="<?=number_format($rs->fld("emp_capital"),2,",",".");?>">
+					                          	<input class="form-control input-sm" id="cli_capital" name="cli_capital" placeholder="Capital Social" value="<?=number_format($rs->fld("emp_capital"),2,",",".");?>">
 					                        </div>
 					                        <div class="form-group col-xs-4">
 					                         	<label for="emp_uf">Forma Integraliza&ccedil;&atilde;o</label>
-					                        	<input class="form-control input-sm" id="cli_integra" placeholder="Integraliza&ccedil;&atilde;o" value="<?=$rs->fld("emp_integraliza");?>">
+					                        	<input class="form-control input-sm" id="cli_integra" name="cli_integra" placeholder="Integraliza&ccedil;&atilde;o" value="<?=$rs->fld("emp_integraliza");?>">
 					                        </div>
 					                        <div class="form-group col-xs-6">
 					                        	<label for="emp_uf">Atividades da Empresa</label>
-					                        	<input class="form-control input-sm " id="cli_atividade" placeholder="Atividades" value="<?=$rs->fld("emp_atividades");?>">
+					                        	<input class="form-control input-sm " id="cli_atividade" name="cli_atividade" placeholder="Atividades" value="<?=$rs->fld("emp_atividades");?>">
 					                        </div>
 										</div>
 
