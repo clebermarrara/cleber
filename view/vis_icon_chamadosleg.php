@@ -54,7 +54,7 @@
 						//$rsa->GeraDados();
 						while($rsa->GeraDados()){?>
 						<li><!-- Task item -->
-							<a href="<?=$hosted;?>/triangulo/view/atendimento_legal.php?token=<?=$_SESSION['token'];?>&chamado=<?=$rsa->fld("cleg_id");?>&acao=1">
+							<a href="<?=$hosted;?>/sistema/view/atendimento_legal.php?token=<?=$_SESSION['token'];?>&chamado=<?=$rsa->fld("cleg_id");?>&acao=1">
 								<h3>
 									<?="[".str_pad($rsa->fld("cod"), 3,"000",STR_PAD_LEFT)."] ".$rsa->fld("UCASE(b.apelido)");?>                    				
 								</h3>

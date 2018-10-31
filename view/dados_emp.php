@@ -63,7 +63,7 @@ $fn = new functions();
 							$benef = $rs->fld("emp_benef");
 							$cod_ac = $rs->fld("emp_cod_ac");
 							$senha_ac = $rs->fld("emp_senha_ac");
-							$val_senha = $fn->data_br($rs->fld("emp_validadesen"));
+							$val_senha = ($rs->fld("emp_validadesen")==0?"":$fn->data_br($rs->fld("emp_validadesen")));
 							?>
 							<li><a href="#tab_4" data-toggle="tab">IRPF</a></li>
 							<li><a href="#tab_6" data-toggle="tab">Documentos</a></li>

@@ -40,6 +40,7 @@
 			else{
 				$compet = date("m/Y", strtotime("-1 month"));
 			}
+			$sql.= " AND ob_ativo=1";
 		}
 		else{
 			$sql = "

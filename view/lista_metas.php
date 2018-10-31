@@ -23,7 +23,9 @@ $sql = "SELECT b.usu_nome, a.metas_dataini, a.metas_datafin FROM metas a
 $rs->FreeSql($sql);
 $rs->GeraDados();
 
-
+$nome_lista = $rs->fld("usu_nome");
+$dini_lista = $fn->data_br($rs->fld("metas_dataini"));
+$fini_lista = $fn->data_br($rs->fld("metas_datafin"));
 ?>
 
     <!-- Content Wrapper. Contains page content -->
@@ -32,7 +34,7 @@ $rs->GeraDados();
         <section class="content-header">
 			<h1>
 				Central de Tarefas
-				<small>[ Lista: <?=$_GET['lista'];?> - <?=$rs->fld("usu_nome");?> | de <?=$fn->data_br($rs->fld("metas_dataini"));?> at&eacute; <?=$fn->data_br($rs->fld("metas_datafin"));?> ]</small>
+				<small>[ Lista: <?=$_GET['lista'];?> - <?=$nome_lista;?> | de <?=$dini_lista;?> at&eacute; <?=$fini_lista;?> ]</small>
 			</h1>
 			<ol class="breadcrumb">
 				<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -221,7 +223,7 @@ $rs->GeraDados();
 								
 							</div><!-- /.box-header -->
 							<div id="vis_metas" class="box-body">
-								 
+							<small>[ Lista: <?=$_GET['lista'];?> - <?=$nome_lista;?> | de <?=$dini_lista;?> at&eacute; <?=$fini_lista;?> ]</small>	
 								<?php 
 									require_once('vis_metaslistadas.php');
 								?>

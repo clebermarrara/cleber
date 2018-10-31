@@ -34,8 +34,8 @@
 		<thead>
 			<tr>
 				<th><input type="checkbox" class="listados"></th>
-				<th>Lista #</th>
-				<th>Colaborador</th>
+				<th>Data Add</th>
+				<th>Add por</th>
 				<th>Empresa</th>
 				<th class="hidden-xs">Obrigacao</th>
 				<th class="hidden-xs">Competencia</th>
@@ -51,7 +51,7 @@
 					JOIN metas b ON b.metas_id = a.tarmetas_metasId
 					JOIN tipos_impostos c ON c.imp_id = a.tarmetas_obri
 					JOIN tri_clientes d ON d.cod = a.tarmetas_emp
-					JOIN usuarios e ON e.usu_cod = b.metas_colab
+					LEFT JOIN usuarios e ON e.usu_cod = a.tarmetas_por
 				WHERE tarmetas_metasId = {$lista}";
 				
 		
@@ -99,6 +99,7 @@
 					$rs2->GeraDados();
 					$num = $rs2->fld("env_gerado")+$rs2->fld("env_conferido")+$rs2->fld("env_enviado");
 					$c = strtotime($rs2->fld("env_conferidodata"));
+					$nm = explode(" ",$rs->fld('usu_nome'));
 				}
 				$res = ($num / 3)*100;
 				$cor = $fn2->getColor($res);
@@ -113,8 +114,8 @@
 				?>
 				<tr class="<?=$color;?>">
 					<td><input type="checkbox" name="listados[]" class="list_tar" value="<?=$rs->fld('tarmetas_id');?>"></td>
-					<td><?=$rs->fld('tarmetas_metasId');?></td>
-					<td><?=$rs->fld('usu_nome');?></td>
+					<td><?=$fn->data_hbr($rs->fld('tarmetas_incl'));?></td>
+					<td><?=$nm[0];?></td>
 					<td><?=str_pad($rs->fld('Codigo'),3,"000",STR_PAD_LEFT)." - ".$rs->fld('Empresa');?></td>
 					<td><?=$rs->fld("Imposto");?></td>
 					<td class="hidden-xs"><?=$rs->fld("tarmetas_comp");?></td>

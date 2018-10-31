@@ -1,4 +1,4 @@
-<table class="table table-strip">
+<table class="table table-strip table-condensed">
     <tr>
         <th>#Cod Envio</th>
         <th>Nome Arquivo</th>
